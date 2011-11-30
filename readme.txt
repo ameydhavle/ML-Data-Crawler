@@ -7,16 +7,18 @@ crawling results in XML format for ML Ingestion
 Steps:
 1. Unzip the folder 
 2. Folder Structure:
- 	a) ML-Crawler.jar: Jar file which wrapes the functionality provided 
- 	   by the open source crawler. 
- 	b) configurations: 
- 	   	setup files which should not be touched 
+ 	a) ML-Crawler.jar: Jar file which wrapes the functionality provided by the open source crawler. 
+ 	b) sample:
+ 		sample configuration file
+ 	b) setup: 
+ 	   	setup files should not be touched 
  	     i)  functions.xml
  	     ii) xquery.xml
  	     iii) crawler.xml
- 	    Along with the setup files mentioned above, this folder is also the placeholder for the crawling instructions 
+ 	c) configurations:     
+ 	   This folder is the placeholder for the crawling instructions 
  		This folder is the place-holder for the crawling-instruction (e.g. sample-setup.xml).
- 		Crawler required the following items to be configured prior to executing, for specifying the items, you would need to do a 'view-source' on the html page
+ 		Crawler requires the following items to be configured prior to executing, for specifying the items, you would need to do a 'view-source' on the html page
  		
  		<!-- ======== Defining the crawling premise =========== -->
  		<?xml version="1.0" encoding="UTF-8"?>
