@@ -59,3 +59,8 @@ Steps:
         <![CDATA[ </reviews> ]]>
     	</file>
 		</config>
+ 3. Once the setup file is place in the folder, open terminal/command prompt and run the following command
+    	java -jar ML-Crawler.jar
+    
+ 4. After execution, you will have the results stored in the folder that you defined in the xml above.    
+		
