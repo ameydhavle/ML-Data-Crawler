@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config charset="ISO-8859-1">
+    <include path="..//setup//functions.xml"/>
+    
+    <!-- Crawling definition begins here -->
+    <var-def name="products">    
+        <call name="download-multipage-list">
+            <call-param name="pageUrl">http://topsy.com/s?q=Nyquil</call-param>
+            <call-param name="nextXPath">//a[starts-with(., 'next')]/@href</call-param>
+            <call-param name="itemXPath">//span[@class="twitter-post-text translatable language-en"]</call-param>
+            <call-param name="maxloops">10</call-param>
+        </call>
+    </var-def>
+    
+    <!-- iterates over all crawled items and extract desired data -->
+    <file action="write" path="nyquil.xml" charset="UTF-8">
+        <![CDATA[ <reviews> ]]>
+        <loop item="item" index="i">
+            <list><var name="products"/></list>
+            <body>
+                <xquery>
+                    <xq-param name="item" type="node()"><var name="item"/></xq-param>
+                    <xq-expression><![CDATA[
+                            declare variable $item as node() external;
+                            let $desc := data($item//*[@class='twitter-post-text translatable language-en'])
+                            let $user := data($item//*[@class='author-name'])
+                                return
+                                    <review>
+                                        <comment>{normalize-space($desc)}</comment>
+										<reviewer>{normalize-space($user)}</reviewer>                                        
+                                    </review>
+                    ]]></xq-expression>
+                </xquery>
+            </body>
+        </loop>
+        <![CDATA[ </reviews> ]]>
+    </file>
+
+</config>
